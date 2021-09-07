@@ -6,5 +6,5 @@ data class Photo(
 
 data class Thumbnail(
     val url: String?,
-    val size: Int?
+    val size: Long?
 )

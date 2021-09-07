@@ -9,8 +9,8 @@ abstract class UseCase<T, P>(
 ) {
     abstract suspend fun buildUseCase(params: P): ModelWrapper<T>
 
-    fun execute(uiScheduler: CoroutineScope, params: P, onResult: (ModelWrapper<T>) -> Unit = {}) {
-        uiScheduler.launch(coroutineContext) {
+    fun execute(uiScope: CoroutineScope, params: P, onResult: (ModelWrapper<T>) -> Unit = {}) {
+        uiScope.launch(coroutineContext) {
             onResult(buildUseCase(params))
         }
     }
