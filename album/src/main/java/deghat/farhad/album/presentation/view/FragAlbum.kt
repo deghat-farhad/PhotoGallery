@@ -4,21 +4,35 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import deghat.farhad.album.BR
 import deghat.farhad.album.R
-import deghat.farhad.album.presentation.viewmodel.ViwMdlAlbum
+import deghat.farhad.album.presentation.view_model.ViwMdlAlbum
 
 @AndroidEntryPoint
 class FragAlbum : Fragment() {
-    val viewModel: ViwMdlAlbum by viewModels()
+    private val viewModel: ViwMdlAlbum by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.frag_album, container, false)
+    ): View {
+        return setDataBinding(inflater, container)
+    }
+
+    private fun setDataBinding(inflater: LayoutInflater, container: ViewGroup?): View {
+        return DataBindingUtil.inflate<ViewDataBinding>(
+            inflater,
+            R.layout.frag_album,
+            container,
+            false
+        ).apply {
+            setVariable(BR.viewModel, viewModel)
+            lifecycleOwner = this@FragAlbum
+        }.root
     }
 }
