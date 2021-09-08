@@ -13,7 +13,10 @@ class ThumbnailItemMapper @Inject constructor() {
         const val DATE_FORMAT = "MMMM yyyy"
     }
 
-    fun mapToPresentation(from: Photo): RecItmThumbnail.Thumbnail {
+    fun mapToPresentation(
+        from: Photo,
+        onClickAction: (PhotoItem) -> Unit
+    ): RecItmThumbnail.Thumbnail {
         val format = DateFormat.getDateInstance(DateFormat.LONG, Locale.FRANCE);
         return RecItmThumbnail.Thumbnail(
             from.thumbnail.url ?: "",
@@ -26,8 +29,9 @@ class ThumbnailItemMapper @Inject constructor() {
                 from.fullScreen.creationDate?.let {
                     format.format(it)
                 } ?: "---"
-            )
-        ) {}
+            ),
+            onClickAction
+        )
     }
 
     private fun bytesToMegaBytes(bytes: Long) = bytes / 1024f.pow(2)

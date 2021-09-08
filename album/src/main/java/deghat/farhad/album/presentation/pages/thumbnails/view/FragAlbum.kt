@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +26,7 @@ class FragAlbum : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        getOutOfFullScreenMode()
         setObservers()
         return setDataBinding(inflater, container)
     }
@@ -57,5 +60,14 @@ class FragAlbum : Fragment() {
                 adapter = adapterThumbnail
             }
         }
+
+        viewModel.navigateToFullScreen.observe(viewLifecycleOwner) {
+            val action = FragAlbumDirections.actionFragAlbumToFragFullScreen(it)
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun getOutOfFullScreenMode() {
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
 }

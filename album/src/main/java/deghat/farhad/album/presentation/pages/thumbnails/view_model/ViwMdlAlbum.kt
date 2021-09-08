@@ -5,9 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import deghat.farhad.album.domain.usecase.GetPhotos
+import deghat.farhad.album.presentation.item.PhotoItem
 import deghat.farhad.album.presentation.item.RecItmThumbnail
 import deghat.farhad.album.presentation.mapper.ThumbnailItemMapper
 import deghat.farhad.common.domain.usecase.base.ModelWrapper
+import deghat.farhad.common.presentation.util.SingleLiveEvent
 import javax.inject.Inject
 
 @HiltViewModel
@@ -16,6 +18,7 @@ class ViwMdlAlbum @Inject constructor(
     private val thumbnailItemMapper: ThumbnailItemMapper
 ) : ViewModel() {
     val thumbnails by lazy { MutableLiveData<List<RecItmThumbnail>>() }
+    val navigateToFullScreen by lazy { SingleLiveEvent<PhotoItem>() }
 
     init {
         getPhotos()
@@ -30,7 +33,9 @@ class ViwMdlAlbum @Inject constructor(
                     thumbnails.postValue(it.model.map { photo ->
                         thumbnailItemMapper.mapToPresentation(
                             photo
-                        )
+                        ) { photoItem ->
+                            navigateToFullScreen.postValue(photoItem)
+                        }
                     })
                 }
                 is ModelWrapper.UnknownError -> TODO()
