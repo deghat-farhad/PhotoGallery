@@ -12,7 +12,11 @@
         tools:layout="@layout/frag_album">
         <action
             android:id="@+id/action_fragAlbum_to_fragFullScreen"
-            app:destination="@id/fragFullScreen" />
+            app:destination="@id/fragFullScreen"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/fragFullScreen"

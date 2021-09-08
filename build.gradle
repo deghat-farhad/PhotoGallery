@@ -12,6 +12,7 @@ buildscript {
         dagger_version = "2.38.1"
         material_version = "1.4.0"
         picasso_version = "2.5.2"
+        core_ktx_version = "1.6.0"
     }
 
     repositories {

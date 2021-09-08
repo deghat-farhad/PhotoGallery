@@ -17,6 +17,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            bind:imageUrl="@{viewModel.photoItem.url}" />
+            bind:imageUrl="@{viewModel.photoItem.url}"
+            android:scaleType="centerCrop"/>
     </FrameLayout>
 </layout>

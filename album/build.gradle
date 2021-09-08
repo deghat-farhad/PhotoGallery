@@ -66,4 +66,7 @@ dependencies {
     //moshi
     implementation "com.squareup.moshi:moshi-kotlin:$moshi_kotlin_version"
     implementation "com.squareup.moshi:moshi-adapters:$moshi_kotlin_version"
+
+    //androidx core
+    implementation "androidx.core:core-ktx:$core_ktx_version"
 }
