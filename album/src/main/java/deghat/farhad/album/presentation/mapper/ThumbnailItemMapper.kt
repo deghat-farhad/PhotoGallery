@@ -9,15 +9,11 @@ import javax.inject.Inject
 import kotlin.math.pow
 
 class ThumbnailItemMapper @Inject constructor() {
-    companion object {
-        const val DATE_FORMAT = "MMMM yyyy"
-    }
-
     fun mapToPresentation(
         from: Photo,
         onClickAction: (PhotoItem) -> Unit
     ): RecItmThumbnail.Thumbnail {
-        val format = DateFormat.getDateInstance(DateFormat.LONG, Locale.FRANCE);
+        val format = DateFormat.getDateInstance(DateFormat.LONG, Locale.US)
         return RecItmThumbnail.Thumbnail(
             from.thumbnail.url ?: "",
             if (from.thumbnail.size == null)
