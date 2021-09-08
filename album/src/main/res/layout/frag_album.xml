@@ -6,6 +6,8 @@
         <variable
             name="viewModel"
             type="deghat.farhad.album.presentation.pages.thumbnails.view_model.ViwMdlAlbum" />
+
+        <import type="android.view.View" />
     </data>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,7 +20,33 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recViwThumbnails"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.showStatusMessage? View.GONE: View.VISIBLE}" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="100dp"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.showStatusMessage? View.VISIBLE: View.GONE}">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.statusMessage}"
+                android:textAlignment="center"
+                android:textColor="@color/darkGray"
+                tools:text="status message" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:onClick="@{() -> viewModel.retry()}"
+                android:text="@string/retry"
+                android:visibility="@{viewModel.showTryAgainButton? View.VISIBLE:View.GONE}" />
+        </LinearLayout>
 
     </FrameLayout>
 </layout>

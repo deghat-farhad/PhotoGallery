@@ -19,17 +19,29 @@ class ViwMdlAlbum @Inject constructor(
 ) : ViewModel() {
     val thumbnails by lazy { MutableLiveData<List<RecItmThumbnail>>() }
     val navigateToFullScreen by lazy { SingleLiveEvent<PhotoItem>() }
+    val statusMessage by lazy { MutableLiveData<String>() }
+    val showStatusMessage by lazy { MutableLiveData<Boolean>() }
+    val errors by lazy { SingleLiveEvent<String>() }
+    val showTryAgainButton by lazy { MutableLiveData<Boolean>() }
 
     init {
         getPhotos()
     }
 
     private fun getPhotos() {
+        showLoading()
         getPhotos.execute(viewModelScope, Unit) {
             when (it) {
-                is ModelWrapper.NetworkError -> TODO()
-                is ModelWrapper.ServerError -> TODO()
+                is ModelWrapper.NetworkError -> showError(
+                    "check your network connection and try again please.",
+                    it.error.message
+                )
+                is ModelWrapper.ServerError -> showError(
+                    "something's wrong with the server, contact the server administrator and try again please.",
+                    it.message.joinToString("\n")
+                )
                 is ModelWrapper.Success -> {
+                    showList()
                     thumbnails.postValue(it.model.map { photo ->
                         thumbnailItemMapper.mapToPresentation(
                             photo
@@ -38,8 +50,33 @@ class ViwMdlAlbum @Inject constructor(
                         }
                     })
                 }
-                is ModelWrapper.UnknownError -> TODO()
+                is ModelWrapper.UnknownError -> showError(
+                    "something went wrong, try again later please.",
+                    it.error.message
+                )
             }
         }
+    }
+
+    private fun showLoading() {
+        statusMessage.postValue("loading...")
+        showStatusMessage.postValue(true)
+        showTryAgainButton.postValue(false)
+    }
+
+    private fun showError(message: String, error: String?) {
+        statusMessage.postValue(message)
+        showStatusMessage.postValue(true)
+        showTryAgainButton.postValue(true)
+        errors.postValue(error)
+    }
+
+    private fun showList() {
+        showStatusMessage.postValue(false)
+        showTryAgainButton.postValue(false)
+    }
+
+    fun retry() {
+        getPhotos()
     }
 }

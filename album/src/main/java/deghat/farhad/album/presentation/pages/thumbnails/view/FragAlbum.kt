@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -64,6 +65,10 @@ class FragAlbum : Fragment() {
         viewModel.navigateToFullScreen.observe(viewLifecycleOwner) {
             val action = FragAlbumDirections.actionFragAlbumToFragFullScreen(it)
             findNavController().navigate(action)
+        }
+
+        viewModel.errors.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
     }
 
