@@ -31,6 +31,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -54,4 +57,10 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_lifecycle_viewmodel_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle_viewmodel_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    //material
+    implementation "com.google.android.material:material:$material_version"
+
+    //picasso
+    implementation "com.squareup.picasso:picasso:$picasso_version"
 }

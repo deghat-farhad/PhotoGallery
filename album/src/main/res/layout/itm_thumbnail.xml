@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="deghat.farhad.album.presentation.item.RecItmThumbnail.Thumbnail" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="3dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/album_photo_thumbnail"
+            android:scaleType="fitCenter"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Rounded"
+            bind:resizedImageUrl="@{item.url}"
+            tools:src="@drawable/img_placeholder" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@{item.size}"
+            android:textAlignment="center"
+            android:textColor="@color/darkGray"
+            tools:text="200MB" />
+
+    </LinearLayout>
+</layout>

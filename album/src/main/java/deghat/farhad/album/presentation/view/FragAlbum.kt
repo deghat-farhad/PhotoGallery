@@ -8,10 +8,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import deghat.farhad.album.BR
 import deghat.farhad.album.R
 import deghat.farhad.album.presentation.view_model.ViwMdlAlbum
+import deghat.farhad.common.presentation.util.recycler_view.GenericRecyclerAdapter
 
 @AndroidEntryPoint
 class FragAlbum : Fragment() {
@@ -21,6 +24,7 @@ class FragAlbum : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        setObservers()
         return setDataBinding(inflater, container)
     }
 
@@ -34,5 +38,24 @@ class FragAlbum : Fragment() {
             setVariable(BR.viewModel, viewModel)
             lifecycleOwner = this@FragAlbum
         }.root
+    }
+
+    private fun setObservers() {
+        viewModel.thumbnails.observe(viewLifecycleOwner) {
+            val recViwThumbnails =
+                requireActivity().findViewById<RecyclerView>(R.id.recViwThumbnails)
+            val adapterThumbnail = GenericRecyclerAdapter(it) { parent, viewId ->
+                RecHldrThumbnail.from(parent, viewId)
+            }
+            val lytMngrThumbnail = StaggeredGridLayoutManager(
+                3,
+                StaggeredGridLayoutManager.VERTICAL
+            )
+
+            recViwThumbnails.apply {
+                layoutManager = lytMngrThumbnail
+                adapter = adapterThumbnail
+            }
+        }
     }
 }
