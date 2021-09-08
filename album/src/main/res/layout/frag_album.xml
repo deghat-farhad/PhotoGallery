@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="deghat.farhad.album.presentation.view_model.ViwMdlAlbum" />
+            type="deghat.farhad.album.presentation.pages.thumbnails.view_model.ViwMdlAlbum" />
     </data>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/gray"
-        tools:context=".presentation.view.FragAlbum">
+        tools:context=".presentation.pages.thumbnails.view.FragAlbum">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recViwThumbnails"

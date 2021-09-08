@@ -7,7 +7,20 @@
 
     <fragment
         android:id="@+id/fragAlbum"
-        android:name="deghat.farhad.album.presentation.view.FragAlbum"
+        android:name="deghat.farhad.album.presentation.pages.thumbnails.view.FragAlbum"
         android:label="frag_album"
-        tools:layout="@layout/frag_album" />
+        tools:layout="@layout/frag_album">
+        <action
+            android:id="@+id/action_fragAlbum_to_fragFullScreen"
+            app:destination="@id/fragFullScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragFullScreen"
+        android:name="deghat.farhad.album.presentation.pages.full_screen.view.FragFullScreen"
+        android:label="frag_full_screen"
+        tools:layout="@layout/frag_full_screen">
+        <argument
+            android:name="photo_item"
+            app:argType="deghat.farhad.album.presentation.item.PhotoItem" />
+    </fragment>
 </navigation>

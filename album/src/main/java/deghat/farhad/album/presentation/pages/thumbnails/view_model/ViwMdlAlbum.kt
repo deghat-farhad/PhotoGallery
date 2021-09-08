@@ -1,4 +1,4 @@
-package deghat.farhad.album.presentation.view_model
+package deghat.farhad.album.presentation.pages.thumbnails.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

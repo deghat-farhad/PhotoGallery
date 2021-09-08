@@ -1,4 +1,4 @@
-package deghat.farhad.album.presentation.view
+package deghat.farhad.album.presentation.pages.thumbnails.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,4 +1,4 @@
-package deghat.farhad.album.presentation.view
+package deghat.farhad.album.presentation.pages.thumbnails.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import deghat.farhad.album.BR
 import deghat.farhad.album.R
-import deghat.farhad.album.presentation.view_model.ViwMdlAlbum
+import deghat.farhad.album.presentation.pages.thumbnails.view_model.ViwMdlAlbum
 import deghat.farhad.common.presentation.util.recycler_view.GenericRecyclerAdapter
 
 @AndroidEntryPoint
