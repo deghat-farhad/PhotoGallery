@@ -41,43 +41,6 @@ dependencies {
     implementation project(":common")
     implementation project(":album")
 
-    //material
-    implementation "com.google.android.material:material:$material_version"
-
-    //kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-    //navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
-
-    //hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_lifecycle_viewmodel_version"
-    kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle_viewmodel_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
-
-    //okhttp3
-    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
-
-    //retrofit2
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
-
-    //moshi
-    implementation "com.squareup.moshi:moshi-kotlin:$moshi_kotlin_version"
-    implementation "com.squareup.moshi:moshi-adapters:$moshi_kotlin_version"
-
-    //picasso
-    implementation "com.squareup.picasso:picasso:$picasso_version"
-
-    //okhttp
-    implementation "com.squareup.okhttp:okhttp:$okhttp_version"
-
-    //Room
-    implementation("androidx.room:room-runtime:$room_version")
-    annotationProcessor "androidx.room:room-compiler:$room_version"
-    kapt("androidx.room:room-compiler:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
 }
