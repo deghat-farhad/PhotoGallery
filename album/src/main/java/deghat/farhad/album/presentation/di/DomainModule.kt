@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import deghat.farhad.album.domain.repository.RepoPhoto
 import deghat.farhad.album.domain.usecase.GetPhotos
+import deghat.farhad.album.domain.usecase.InvalidateAndRefreshCache
 import kotlinx.coroutines.Dispatchers
 import kotlin.coroutines.CoroutineContext
 
@@ -17,6 +18,14 @@ class DomainModule {
         coroutineContext: CoroutineContext,
         repoPhoto: RepoPhoto
     ) = GetPhotos(
+        coroutineContext, repoPhoto
+    )
+
+    @Provides
+    fun invalidateAndRefreshCache(
+        coroutineContext: CoroutineContext,
+        repoPhoto: RepoPhoto
+    ) = InvalidateAndRefreshCache(
         coroutineContext, repoPhoto
     )
 

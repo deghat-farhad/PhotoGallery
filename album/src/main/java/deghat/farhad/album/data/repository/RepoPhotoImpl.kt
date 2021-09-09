@@ -12,4 +12,8 @@ class RepoPhotoImpl @Inject constructor(
     override suspend fun getPhotos(): ModelWrapper<List<Photo>> {
         return cache.getPhotos()
     }
+
+    override suspend fun invalidateAndRefreshCache(): ModelWrapper<List<Photo>> {
+        return cache.invalidateAndRefresh()
+    }
 }

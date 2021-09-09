@@ -5,4 +5,5 @@ import deghat.farhad.common.domain.usecase.base.ModelWrapper
 
 interface RepoPhoto {
     suspend fun getPhotos(): ModelWrapper<List<Photo>>
+    suspend fun invalidateAndRefreshCache(): ModelWrapper<List<Photo>>
 }

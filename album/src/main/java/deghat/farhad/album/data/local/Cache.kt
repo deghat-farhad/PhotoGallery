@@ -29,4 +29,9 @@ class Cache @Inject constructor(
             )
         }
     }
+
+    suspend fun invalidateAndRefresh(): ModelWrapper<List<Photo>> {
+        local.removePhotos()
+        return getPhotos()
+    }
 }
