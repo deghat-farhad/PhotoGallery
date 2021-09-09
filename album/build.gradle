@@ -78,4 +78,6 @@ dependencies {
 
     //picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"
+
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefresh_version"
 }

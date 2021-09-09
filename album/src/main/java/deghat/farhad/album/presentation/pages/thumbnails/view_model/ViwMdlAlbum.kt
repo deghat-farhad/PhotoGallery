@@ -26,6 +26,7 @@ class ViwMdlAlbum @Inject constructor(
     val showStatusMessage by lazy { MutableLiveData<Boolean>() }
     val errors by lazy { SingleLiveEvent<String>() }
     val showTryAgainButton by lazy { MutableLiveData<Boolean>() }
+    val isRefreshing by lazy { MutableLiveData<Boolean>() }
 
     init {
         getPhotos()
@@ -39,12 +40,14 @@ class ViwMdlAlbum @Inject constructor(
     }
 
     private fun showLoading() {
+        isRefreshing.postValue(true)
         statusMessage.postValue("loading...")
         showStatusMessage.postValue(true)
         showTryAgainButton.postValue(false)
     }
 
     private fun showError(message: String, error: String?) {
+        isRefreshing.postValue(false)
         statusMessage.postValue(message)
         showStatusMessage.postValue(true)
         showTryAgainButton.postValue(true)
@@ -52,6 +55,7 @@ class ViwMdlAlbum @Inject constructor(
     }
 
     private fun showList() {
+        isRefreshing.postValue(false)
         showStatusMessage.postValue(false)
         showTryAgainButton.postValue(false)
     }

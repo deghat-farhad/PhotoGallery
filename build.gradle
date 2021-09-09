@@ -15,6 +15,7 @@ buildscript {
         core_ktx_version = "1.6.0"
         okhttp_version = "2.5.0"
         room_version = "2.3.0"
+        swiperefresh_version = "1.1.0"
     }
 
     repositories {
