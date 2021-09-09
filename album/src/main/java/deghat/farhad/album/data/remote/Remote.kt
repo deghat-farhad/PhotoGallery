@@ -1,21 +1,14 @@
 package deghat.farhad.album.data.remote
 
 import deghat.farhad.album.data.entity.PhotoEntity
-import deghat.farhad.album.data.mapper.PhotoMapper
-import deghat.farhad.album.domain.model.Photo
-import deghat.farhad.common.data.mapper.NetworkResponseMapper
-import deghat.farhad.common.domain.usecase.base.ModelWrapper
+import deghat.farhad.common.data.entity.ErrorResponse
+import deghat.farhad.common.data.utils.network.NetworkResponse
 import javax.inject.Inject
 
 class Remote @Inject constructor(
-    private val serviceGenerator: ServiceGenerator,
-    private val photoMapper: PhotoMapper,
-    private val photoNetworkResponseMapper: NetworkResponseMapper<List<PhotoEntity>, List<Photo>>
+    private val serviceGenerator: ServiceGenerator
 ) {
-    suspend fun getPhotos(): ModelWrapper<List<Photo>> {
-        return photoNetworkResponseMapper.mapToDomain(
-            serviceGenerator.photoService().getPhotos(),
-            photoMapper
-        )
+    suspend fun getPhotos(): NetworkResponse<List<PhotoEntity>, ErrorResponse> {
+        return serviceGenerator.photoService().getPhotos()
     }
 }
