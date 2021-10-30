@@ -12,6 +12,7 @@ import deghat.farhad.album.presentation.item.RecItmThumbnail
 import deghat.farhad.album.presentation.mapper.ThumbnailItemMapper
 import deghat.farhad.common.domain.usecase.base.ModelWrapper
 import deghat.farhad.common.presentation.util.SingleLiveEvent
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -34,8 +35,10 @@ class ViwMdlAlbum @Inject constructor(
 
     private fun getPhotos() {
         showLoading()
-        getPhotos.execute(viewModelScope, Unit) {
-            handlePhotoModelWrapper(it)
+        viewModelScope.launch {
+            getPhotos.execute(Unit) {
+                handlePhotoModelWrapper(it)
+            }
         }
     }
 
@@ -66,8 +69,10 @@ class ViwMdlAlbum @Inject constructor(
 
     fun invalidateAndRefreshCache() {
         showLoading()
-        invalidateAndRefreshCache.execute(viewModelScope, Unit) {
-            handlePhotoModelWrapper(it)
+        viewModelScope.launch {
+            invalidateAndRefreshCache.execute(Unit) {
+                handlePhotoModelWrapper(it)
+            }
         }
     }
 

@@ -7,11 +7,8 @@ import deghat.farhad.common.domain.usecase.base.UseCase
 import kotlin.coroutines.CoroutineContext
 
 class InvalidateAndRefreshCache(
-    coroutineContext: CoroutineContext,
     private val repoPhoto: RepoPhoto
-) : UseCase<List<Photo>, Unit>(
-    coroutineContext
-) {
+) : UseCase<List<Photo>, Unit>() {
     override suspend fun buildUseCase(params: Unit): ModelWrapper<List<Photo>> {
         return repoPhoto.invalidateAndRefreshCache()
     }

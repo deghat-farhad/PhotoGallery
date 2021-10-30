@@ -15,20 +15,15 @@ import kotlin.coroutines.CoroutineContext
 class DomainModule {
     @Provides
     fun getPhotos(
-        coroutineContext: CoroutineContext,
         repoPhoto: RepoPhoto
     ) = GetPhotos(
-        coroutineContext, repoPhoto
+        repoPhoto
     )
 
     @Provides
     fun invalidateAndRefreshCache(
-        coroutineContext: CoroutineContext,
         repoPhoto: RepoPhoto
     ) = InvalidateAndRefreshCache(
-        coroutineContext, repoPhoto
+        repoPhoto
     )
-
-    @Provides
-    fun coroutineContext(): CoroutineContext = Dispatchers.IO
 }
